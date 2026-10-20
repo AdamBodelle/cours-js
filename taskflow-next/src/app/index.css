@@ -1,0 +1,585 @@
+:root {
+  --bg: #f6f8fb;
+  --surface: #ffffff;
+  --text: #0f172a;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --accent: #0e7490;
+  --accent-soft: #e0f7fa;
+  --danger: #e11d48;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+[data-theme="dark"] {
+  --bg: #0b1220;
+  --surface: #15203a;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --border: #24324f;
+  --accent: #22d3ee;
+  --accent-soft: #0e4a5a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* =========================================
+   LAYOUT & NAVIGATION (Header)
+   ========================================= */
+
+/* On surcharge la grille de .app pour que la topbar prenne toute la largeur */
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Le conteneur principal doit garder sa largeur centrée */
+main {
+  width: 100%;
+  max-width: 760px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+/* La barre du haut */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 1px 3px rgb(15 23 42 / 4%);
+}
+
+/* Le logo / titre */
+.brand {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--accent);
+  text-decoration: none;
+  margin-right: 2rem;
+}
+
+/* Le conteneur des liens */
+.nav {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  flex: 1; /* Pousse le bouton "Mode sombre" vers la droite */
+}
+
+/* Les liens de navigation */
+.nav a {
+  text-decoration: none;
+  color: var(--muted);
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+
+.nav a:hover,
+.nav a.active {
+  color: var(--accent);
+}
+
+/* =========================================
+   GRILLE DES PROJETS (ProjectsPage)
+   ========================================= */
+.project-grid {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+.project-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgb(15 23 42 / 8%);
+  border-color: var(--accent);
+}
+
+.project-card h2 {
+  margin: 0;
+  font-size: 1.15rem;
+  color: var(--accent);
+}
+
+/* =========================================
+   FORMULAIRES (NewProjectPage)
+   ========================================= */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 500px;
+  margin-top: 1.5rem;
+  background: var(--surface);
+  padding: 1.5rem;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.field label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.field input,
+.field textarea {
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+}
+
+.field input[aria-invalid="true"],
+.field textarea[aria-invalid="true"] {
+  border-color: var(--danger);
+  background: #fff1f2;
+}
+
+[data-theme="dark"] .field input[aria-invalid="true"],
+[data-theme="dark"] .field textarea[aria-invalid="true"] {
+  background: #4c0519;
+}
+
+.form button[type="submit"] {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 0.75rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+/* =========================================
+   UTILITAIRES & BANNIÈRES
+   ========================================= */
+.error-banner {
+  background: #fee2e2;
+  color: #991b1b;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #f87171;
+  margin: 1rem 0;
+  font-size: 0.95rem;
+}
+
+[data-theme="dark"] .error-banner {
+  background: #450a0a;
+  color: #fca5a5;
+  border-color: #7f1d1d;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.small {
+  font-size: 0.85rem;
+}
+
+a.small {
+  text-decoration: none;
+  color: var(--muted);
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+a.small:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+h1 {
+  margin: 0;
+  font-size: 2rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+h1 small {
+  font-size: 0.95rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.25rem;
+  box-shadow: 0 2px 10px rgb(15 23 42 / 6%);
+}
+
+.card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.card__header h2 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.task-form {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.task-form input,
+.task-form select {
+  flex: 1;
+  min-width: 200px;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  padding: 0.5rem 0.9rem;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.task-form button {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.error {
+  color: var(--danger);
+  width: 100%;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.filters {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.filters button {
+  padding: 0.35rem 0.7rem;
+  font-size: 0.85rem;
+}
+
+.filters button[aria-pressed="true"] {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+
+.tasks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.task__title {
+  flex: 1;
+}
+
+.task--done .task__title {
+  text-decoration: line-through;
+  color: var(--muted);
+}
+
+.task__status {
+  font-size: 0.8rem;
+  min-width: 84px;
+}
+
+.task--doing .task__status {
+  background: #fef3c7;
+  color: #78350f;
+}
+
+.task--done .task__status {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.task__remove {
+  border: none;
+  color: var(--muted);
+}
+
+.prio {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+}
+
+.prio--1 {
+  background: #ffe4e6;
+  color: #9f1239;
+}
+
+.prio--2 {
+  background: #fef3c7;
+  color: #78350f;
+}
+
+.prio--3 {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.empty {
+  color: var(--muted);
+  text-align: center;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* =========================================
+   LAYOUT & NAVIGATION (Header)
+   ========================================= */
+.site-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 3px rgb(15 23 42 / 4%);
+  margin-bottom: 2rem;
+}
+
+.site-header nav {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.site-header a {
+  text-decoration: none;
+  color: var(--muted);
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.site-header a:hover,
+.site-header a.active {
+  color: var(--accent);
+}
+
+.site-header .brand {
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--text);
+  text-decoration: none;
+}
+
+/* =========================================
+   GRILLE DES PROJETS (ProjectsPage)
+   ========================================= */
+.project-grid {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+.project-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgb(15 23 42 / 8%);
+  border-color: var(--accent);
+}
+
+.project-card h2 {
+  margin: 0;
+  font-size: 1.15rem;
+  color: var(--accent);
+}
+
+/* =========================================
+   FORMULAIRES (NewProjectPage)
+   ========================================= */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 500px;
+  margin-top: 1.5rem;
+  background: var(--surface);
+  padding: 1.5rem;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.field label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.field input,
+.field textarea {
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+}
+
+.field input[aria-invalid="true"],
+.field textarea[aria-invalid="true"] {
+  border-color: var(--danger);
+  background: #fff1f2; /* Rouge très clair */
+}
+
+[data-theme="dark"] .field input[aria-invalid="true"],
+[data-theme="dark"] .field textarea[aria-invalid="true"] {
+  background: #4c0519; /* Rouge très sombre */
+}
+
+.form button[type="submit"] {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 0.75rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+/* =========================================
+   UTILITAIRES & BANNIÈRES
+   ========================================= */
+.error-banner {
+  background: #fee2e2;
+  color: #991b1b;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #f87171;
+  margin: 1rem 0;
+  font-size: 0.95rem;
+}
+
+[data-theme="dark"] .error-banner {
+  background: #450a0a;
+  color: #fca5a5;
+  border-color: #7f1d1d;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.small {
+  font-size: 0.85rem;
+}
+
+a.small {
+  text-decoration: none;
+  color: var(--muted);
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+a.small:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
