@@ -11,6 +11,8 @@ import { ThemeToggle } from "./components/ThemeToggle";
 import { ThemeProvider } from "./context/ThemeContext.tsx";
 import { FocusTimer } from "./components/FocusTimer.tsx";
 
+import { Route, Routes, useParams } from "react-router";
+
 const INITIAL_TASKS: Task[] = [
   { id: "t1", title: "Installer Node.js 22", status: "done", priority: 1 },
   { id: "t2", title: "Lire la doc useState", status: "done", priority: 2 },
@@ -22,10 +24,22 @@ const next = (s: Status): Status =>
 
 export default function App() {
   return (
-    <ThemeProvider>
-      <Board />
-    </ThemeProvider>
+    <Routes>
+      {/* Route « parent » : le Layout entoure toutes les pages */}
+      <Route element={<Layout />}>
+        <Route index element={<ProjectsPage />} />
+        <Route path="projects/new" element={<NewProjectPage />} />
+        <Route path="projects/:id" element={<ProjectRoute />} />
+        <Route path="about" element={<AboutPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Route>
+    </Routes>
   );
+}
+
+function ProjectRoute() {
+  const { id = "" } = useParams();
+  return <ProjectPage key={id} id={id} />;
 }
 
 function Board() {
