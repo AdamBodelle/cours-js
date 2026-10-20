@@ -4,20 +4,26 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
-    "lint": "oxlint",
-    "preview": "vite preview"
+    "dev": "concurrently -n api,web -c blue,green \"npm:api\" \"npm:web\"",
+    "web": "vite",
+    "api": "json-server db.json --port 3001",
+    "reset-db": "node -e \"require('fs').copyFileSync('db.seed.json','db.json')\"",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "format": "prettier --write \"src/**/*.{ts,tsx,css}\""
   },
   "dependencies": {
     "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+    "react-dom": "^19.2.8",
+    "react-router": "^8.5.0"
   },
   "devDependencies": {
     "@types/node": "^24.13.3",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.7",
     "@vitejs/plugin-react": "^6.1.1",
+    "concurrently": "^10.0.6",
+    "json-server": "^1.0.0-beta.15",
     "oxlint": "^1.81.0",
     "prettier": "^3.9.9",
     "typescript": "~6.0.2",

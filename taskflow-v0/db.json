@@ -1,0 +1,18 @@
+{
+    "projects": [
+        {
+            "id": "site-esiee",
+            "name": "Refonte site ESIEE-IT",
+            "description": "Nouvelle vitrine pour la rentrée."
+        }
+    ],
+    "tasks": [
+        {
+            "id": "t1",
+            "projectId": "site-esiee",
+            "title": "Maquettes validées",
+            "status": "done",
+            "priority": 1
+        }
+    ]
+}
