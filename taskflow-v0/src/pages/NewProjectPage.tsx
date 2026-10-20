@@ -1,6 +1,7 @@
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import { useNavigate } from "react-router";
 import { api } from "../api";
+import { ErrorMessage } from "../components/ErrorMessage";
 
 type FormValues = { name: string; description: string };
 type FormErrors = Partial<Record<keyof FormValues, string>>;
@@ -69,7 +70,25 @@ export function NewProjectPage() {
                     </p>
                 )}
             </div>
-// …
+
+            <div className="field">
+                <label htmlFor="description">Description (optionnelle)</label>
+                <textarea
+                    id="description"
+                    name="description"
+                    value={values.description}
+                    onChange={handleChange}
+                    aria-invalid={showErrors && !!errors.description}
+                    aria-describedby="description-error"
+                    rows={4}
+                />
+                {showErrors && errors.description && (
+                    <p id="description-error" className="error">
+                        {errors.description}
+                    </p>
+                )}
+            </div>
+
             {serverError && <ErrorMessage message={serverError} />}
             <button type="submit" disabled={saving}>
                 {saving ? "Création…" : "Créer le projet"}

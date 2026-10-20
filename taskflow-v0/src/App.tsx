@@ -12,12 +12,12 @@ import { ThemeProvider } from "./context/ThemeContext.tsx";
 import { FocusTimer } from "./components/FocusTimer.tsx";
 
 import { Route, Routes, useParams } from "react-router";
-
-const INITIAL_TASKS: Task[] = [
-  { id: "t1", title: "Installer Node.js 22", status: "done", priority: 1 },
-  { id: "t2", title: "Lire la doc useState", status: "done", priority: 2 },
-  { id: "t3", title: "Terminer le TP1", status: "done", priority: 1 },
-]
+import { Layout } from './components/Layout.tsx';
+import { ProjectsPage } from './pages/ProjectPages.tsx';
+import { NewProjectPage } from './pages/NewProjectPage.tsx';
+import { NotFoundPage } from './pages/NotFoundPage.tsx';
+import { AboutPage } from "./pages/AboutPage";
+import { ProjectPage } from "./pages/ProjectPage";
 
 const next = (s: Status): Status =>
   s === "todo" ? "doing" : s === "doing" ? "done" : "todo";
@@ -42,7 +42,7 @@ function ProjectRoute() {
   return <ProjectPage key={id} id={id} />;
 }
 
-function Board() {
+export function Board() {
   // Tâches sauvegardées dans le navigateur (hook personnalisé)
   const [tasks, setTasks] = useLocalStorage<Task[]>(
     "taskflow-tasks",

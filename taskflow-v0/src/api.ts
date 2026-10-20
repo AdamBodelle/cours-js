@@ -1,6 +1,6 @@
 import { type Task, type Project, type NewProject, type NewTask, type ProjectWithTasks } from "./types";
 
-const API_URL = "http://localhost:3001/"
+const API_URL = "http://localhost:3001"
 
 export class ApiError extends Error {
     status: number;
