@@ -2,17 +2,9 @@ import { useState } from 'react'
 import './App.css'
 
 import type { Filter, Status, Task } from "./types";
-import  { nextStatus } from "./types";
 import { FilterBar } from "./components/FilterBar";
 import { TaskForm } from "./components/TaskForm";
 import { TaskList } from "./components/TaskList";
-import { Card } from "./components/Card";
-
-const INITIAL_TASKS: Task[] = [
-  { id: "t1", title: "Installer Node.js 22", status: "done", priority: 1},
-  { id: "t2", title: "Lire la doc useState", status: "done", priority: 2},
-  { id: "t3", title: "Terminer le TP1", status: "done", priority: 1},
-]
 
 const next = (s: Status): Status =>
   s === "todo" ? "doing" : s === "doing" ? "done" : "todo";
