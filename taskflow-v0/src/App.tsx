@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 
-import { nextStatus, type Filter, type Priority, type Task, type Status } from "./types";
+import { type Filter, type Priority, type Task, type Status } from "./types";
 import { FilterBar } from "./components/FilterBar";
 import { TaskForm } from "./components/TaskForm";
 import { TaskList } from "./components/TaskList";
@@ -10,12 +10,6 @@ import { useLocalStorage } from "./hooks/useLocalStorage";
 import { ThemeToggle } from "./components/ThemeToggle";
 import { ThemeProvider } from "./context/ThemeContext.tsx";
 import { FocusTimer } from "./components/FocusTimer.tsx";
-
-const INITIAL_TASKS: Task[] = [
-  { id: "t1", title: "Installer Node.js 22", status: "done", priority: 1 },
-  { id: "t2", title: "Lire la doc useState", status: "done", priority: 2 },
-  { id: "t3", title: "Terminer le TP1", status: "done", priority: 1 },
-]
 
 const next = (s: Status): Status =>
   s === "todo" ? "doing" : s === "doing" ? "done" : "todo";
